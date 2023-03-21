@@ -13,7 +13,7 @@ for plan in plans:
     tempX,tempY = x,y-1
   else:
     tempX,tempY = x,y+1
-  if(tempX>=1 and tempY>=1):
+  if(tempX>=1 and tempY>=1 and tempX<=n and tempY<=n):
    
     x,y=tempX,tempY
 
