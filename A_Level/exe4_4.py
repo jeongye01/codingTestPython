@@ -2,7 +2,7 @@
 n,m=map(int,input().split())
 a,b,d=map(int,input().split())
 mapArr = [list(map(int, input().split())) for _ in range(m)]
-memoryArr=[0 * m for i in range(n)]
+memoryArr=[[0] * m for i in range(n)]
 #0북쪽,1동쪽,2남쪽,3서쪽
 turnOrder=[[3,2,1,0],[0,3,2,1],[1,0,3,2],[2,1,0,3]]
 moveMap=[(-1,0),(0,1),(1,0),(0,-1)]
