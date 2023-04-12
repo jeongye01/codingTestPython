@@ -1,3 +1,4 @@
+#럭키 스트레이트
 n = input()
 length = len(n) # 점수값의 총 자릿수
 summary = 0
