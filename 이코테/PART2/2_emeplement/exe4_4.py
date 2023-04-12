@@ -1,3 +1,46 @@
+#내풀이 DATE->4.12 풀이시간->40분
+n, m = map(int, input().split())
+x, y, d = map(int, input().split())
+mapArr = [list(map(int, input().split())) for _ in range(m)]
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+ctn = 0
+result = 1
+
+
+def move(newX,newY):
+  global mapArr, x, y, result
+  mapArr[y][x] = -1
+  x, y = newX, newY
+  result += 1
+
+
+while True:
+
+  tempX, tempY = x + dx[d], y + dy[d]
+  if (tempX >= 0 and tempX < n and tempY >= 0 and tempY < m
+      and mapArr[tempY][tempX] == 0):
+    move(tempX,tempY)
+    ctn = 0
+
+  else:
+    d = (d + 1) % 4
+    ctn += 1
+
+  if (ctn == 4):
+    back = (d + 1) % 4
+    tempX, tempY = x - dx[back], y - dy[back]
+    if (mapArr[tempY][tempX] == 1):  #뒤가 바다
+      break
+    else:
+      move(tempX,tempY)
+
+print(result)
+
+
+'''
+#내 풀이  3.20
 # 게임개발
 n,m=map(int,input().split())
 a,b,d=map(int,input().split())
@@ -44,3 +87,4 @@ while(canMove):
   
   
 print(ans)
+'''
