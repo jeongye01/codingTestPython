@@ -25,7 +25,7 @@ def solution(food_times, k):
 
 
 '''
-#내풀이 -> 테스트 통과
+#내풀이 -> 테스트 통과 DATE->4.11 풀이시간->180분
 def solution(food_times, k):
     answer = 0
     idx=k//len(food_times)-1

@@ -40,7 +40,7 @@ print(result)
 
 
 '''
-#내 풀이  3.20
+#내 풀이  3.20 
 # 게임개발
 n,m=map(int,input().split())
 a,b,d=map(int,input().split())
