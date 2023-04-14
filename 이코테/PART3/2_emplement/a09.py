@@ -31,7 +31,7 @@ def solution(s):
     length=len(s)
     new_s=[]
     gap=0
-    while(gap<=length):
+    while(gap<=(length//2)):
         temp=""
         gap+=1
         cnt=1
@@ -40,19 +40,10 @@ def solution(s):
                 if(s[i:i+gap]==focus):
                     cnt+=1
                 else:
-                   
-                    if(cnt>1):
-                        temp+=(str(cnt)+focus)
-                    else:
-                        temp+=focus
+                    temp += str(cnt) + focus if cnt >= 2 else focus
                     cnt=1
                     focus=s[i:i+gap]
-                if(i+gap>=length):
-                  
-                    if(cnt>1):
-                        temp+=(str(cnt)+focus)
-                    else:
-                        temp+=focus
+        temp += str(cnt) + focus if cnt >= 2 else focus
         if(len(temp)>0):
           new_s.append(len(temp))
 
