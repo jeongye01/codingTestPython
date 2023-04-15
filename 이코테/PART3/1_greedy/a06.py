@@ -24,21 +24,3 @@ def solution(food_times, k):
 
 
 
-'''
-#내풀이 -> 테스트 통과 DATE->4.11 풀이시간->180분
-def solution(food_times, k):
-    answer = 0
-    idx=k//len(food_times)-1
-    init_idx=idx
-    food_ctn=len(food_times)
-    while food_times[idx]<init_idx+1:
-        idx=(idx+1)%food_ctn
-        
-        if(idx==init_idx):
-            answer=-1
-            break;
-        
-    
-    answer=food_times[(idx+1)%food_ctn]
-    return answer
-'''
