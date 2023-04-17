@@ -33,3 +33,39 @@ def bfs(x, y):
  return graph[n - 1][m - 1]
 # BFS를 수행한 결과 출력
 print(bfs(0, 0))
+
+
+
+'''
+내 풀이
+from collections import deque
+n,m=map(int,input().split())
+
+graph=[]
+for i in range(n):
+  graph.append(list(map(int,input())))
+
+dx=[0,-1,0,1]
+dy=[-1,0,1,0]
+answer=0
+
+
+#괴물 있 -> 0 없->1
+def bfs():
+  q=deque([(0,0)])
+  while q:
+    x,y=q.popleft()
+    for d in range(4):
+      newX,newY=x+dx[d],y+dy[d]
+      if(newX>=0 and newX<m and newY>=0 and newY<n and graph[newY][newX]==1):
+        graph[newY][newX]=graph[y][x]+1
+        q.append((newX,newY))
+
+
+bfs()
+
+print(graph[n-1][m-1])
+
+
+
+'''
