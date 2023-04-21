@@ -22,7 +22,7 @@ def solution(N, stages):
 
 
 '''
-내 풀이 DATE-> 4.22 풀이시간->30분 
+내 풀이->테스트 통과 DATE-> 4.22 풀이시간->30분 
 
 def solution(N, stages):
 
