@@ -1,3 +1,4 @@
+# 가사 검색
 from bisect import bisect_left, bisect_right
 #“fro”로 시작되는 마지막 단어의 위치를 찾고, “fro”로 시작되는 첫 단어의 위치를 찾아서 그 위치의 차이를 계산하면 될 것이다. 
 # 값이 [left_value, right_value]인 데이터의 개수를 반환하는 함수
