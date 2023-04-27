@@ -1,5 +1,5 @@
 #View
-#내 풀이->테스트 통과 DATE=>1248 풀이시간 40분 
+#내 풀이->테스트 통과 DATE=>4.27 풀이시간 40분 
 n=int(input())
 array=list(map(int,input().split()))
 ans=0
