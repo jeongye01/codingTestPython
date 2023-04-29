@@ -9,7 +9,7 @@ for test_case in range(1, T + 1):
     array=list(map(int,input().split()))
 
     for i in range(8):
-        array[i]%=150
+        array[i]%=150 #숫자 크기 덜어내기 
     isEnd=False
     while not isEnd:
         # 1사이클
