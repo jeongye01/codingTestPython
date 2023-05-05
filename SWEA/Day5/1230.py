@@ -15,10 +15,10 @@ while test_case<10:
     for i in range(1,len(c)):
         if c[i] not in ['I','D','A']:tmp.append(int(c[i]))
         else:
-            c_li.append(list(tmp))
+            c_li.append(tmp)
             tmp=[]
             tmp.append(c[i])
-    c_li.append(list(tmp))
+    c_li.append(tmp)
  
     for i in range(M):
         command = c_li[i]
