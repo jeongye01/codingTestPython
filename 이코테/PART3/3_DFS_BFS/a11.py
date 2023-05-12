@@ -120,3 +120,58 @@ print(result)
 
 
 '''
+
+#2번째 풀이
+'''
+from itertools import combinations
+from collections import deque
+import copy
+dx=[0,-1,0,1]
+dy=[-1,0,1,0]
+def bfs(x,y):
+  global board2
+  q=deque([(x,y)])
+  while q:
+    now=q.popleft()
+    for d in range(4):
+      nx,ny=now[0]+dx[d],now[1]+dy[d]
+      if 0<=nx<m and 0<=ny<n:
+        if board2[ny][nx]==0:
+          q.append((nx,ny))
+          board2[ny][nx]=2
+        
+        
+  
+n,m=map(int,input().split())
+board=[]
+for _ in range(n):
+  board.append(list(map(int,input().split())))
+idxs=[]
+for i in range(n):
+  for j in range(m):
+    if(board[i][j]==0):
+      idxs.append((i,j))
+comb=list(combinations(idxs,3))
+ans=0
+for c in comb:
+  board2=copy.deepcopy(board)
+  for pos in c:
+    i,j=pos
+    board2[i][j]=1
+  for i in range(n):
+    for j in range(m):
+      if board2[i][j]==2:
+        bfs(j,i)
+  tmp=0
+  
+  for i in range(n):
+    for j in range(m):
+      if board2[i][j]==0:
+        tmp+=1
+  ans=max(ans,tmp)
+print(ans)
+        
+
+
+
+'''
