@@ -122,6 +122,7 @@ print(result)
 '''
 
 #2번째 풀이
+##내풀이 -> 테스트 통과  DATE->5.12 풀이시간->30분
 '''
 from itertools import combinations
 from collections import deque

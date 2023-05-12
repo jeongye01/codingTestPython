@@ -84,3 +84,60 @@ print(graph[ix-1][iy-1])
 
 
 '''
+#내풀이 -> 테스트 통과  DATE->5.12 풀이시간->30분
+'''
+
+from collections import deque
+dx=[0,-1,0,1]
+dy=[-1,0,1,0]
+def bfs():
+  global visited,board
+  q=deque()
+  for v in virus:
+    q.append(v) # x,y
+    visited[v[2]][v[1]]=True
+  timer=0
+  tmp=0
+  while q:
+    now=q.popleft()
+    if tmp>now[0]:
+      timer+=1
+    tmp=now[0]
+    if timer>=s:
+      return 
+    for d in range(4):
+      nx,ny=now[1]+dx[d],now[2]+dy[d]
+      if 0<=nx<n and 0<=ny<n:
+        if visited[ny][nx]==False and board[ny][nx]==0 :
+          q.append((now[0],nx,ny))
+          visited[ny][nx]=True
+          board[ny][nx]=now[0]
+        
+        
+  
+n,k=map(int,input().split())
+board=[]
+virus=[]
+for i in range(n):
+  data=list(map(int,input().split()))
+  board.append(data)
+  for j in range(n):
+    if data[j]!=0:
+      virus.append([data[j],j,i])     
+virus.sort(key=lambda x:x[0])
+s,x,y=map(int,input().split())
+visited=[[False]*n for _ in range(n)]
+bfs()
+
+#for b in board:
+ # print(*b)
+ans=board[x-1][y-1]
+print(ans)
+        
+
+  
+  
+
+
+
+'''
