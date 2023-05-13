@@ -122,4 +122,60 @@ print(result)
 
 
 
+#재풀이 60분 경과
+'''
 
+from collections import deque
+dx=[0,-1,0,1]
+dy=[-1,0,1,0]
+n,l,r=map(int,input().split())
+board=[]
+for _ in range(n):
+  board.append(list(map(int,input().split())))
+
+
+
+
+
+
+def bfs(x,y):
+  global record,numbering,dp
+  q=deque([(x,y)])
+  summary,cnt=board[y][x],1
+  dp[y][x]=numbering
+  while q:
+    now=q.popleft()
+    for d in range(4):
+      nx,ny=now[0]+dx[d],now[1]+dy[d]
+      if 0<=nx<n and 0<=ny<n:
+        if dp[ny][nx]==0 and l<=abs(board[now[1]][now[0]]-board[ny][nx])<=r:
+          q.append((nx,ny))
+          dp[ny][nx]=numbering
+          summary+=board[ny][nx]
+          cnt+=1
+
+  if cnt>1:
+    record[numbering]=summary//cnt
+ans=0
+while True:
+  record=[0]*(n*n+1)
+  dp=[[0]*n for _ in range(n)]
+  numbering=0
+  for i in range(n):
+    for j in range(n):
+      if dp[i][j]==0:
+        numbering+=1
+        bfs(j,i)
+  
+  if sum(record)==0:
+    break
+  else:
+    ans+=1
+  for i in range(n):
+    for j in range(n):
+      if record[dp[i][j]]!=0:
+        board[i][j]=record[dp[i][j]]
+          
+print(ans)
+
+'''
