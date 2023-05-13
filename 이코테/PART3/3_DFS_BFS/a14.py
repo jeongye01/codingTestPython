@@ -141,3 +141,47 @@ print(maximum)
 print(minimum)
 
 '''
+#내풀이 -> 테스트 통과  DATE->5.12 풀이시간->40분
+'''
+def bt(idx,v,path):
+  global mx,mn,opes
+  if idx>=n:
+    #print(opes,path,v)
+    mx=max(mx,v)
+    mn=min(mn,v)
+    return
+  #print(v)
+  if opes[0]>0:
+    opes[0]-=1
+    bt(idx+1,v+arr[idx],path+[0])
+    opes[0]+=1
+  if opes[1]>0:
+    opes[1]-=1
+    bt(idx+1,v-arr[idx],path+[1])
+    opes[1]+=1
+  if opes[2]>0:
+    opes[2]-=1
+    bt(idx+1,v*arr[idx],path+[2])
+    opes[2]+=1
+  if opes[3]>0:
+    opes[3]-=1
+    tmp=v
+    if v<0:
+      tmp=(-1)*(abs(v)//arr[idx])
+    else:
+      tmp=v//arr[idx]
+    bt(idx+1,tmp,path+[3])
+    opes[3]+=1
+
+
+n=int(input())
+arr=list(map(int,input().split()))
+opes=list(map(int,input().split())) #덧셈,뺄셈,곱셈,나눗셈
+mx,mn=-1e9,1e9
+bt(1,arr[0],[])
+print(mx)
+print(mn)
+
+
+
+'''
