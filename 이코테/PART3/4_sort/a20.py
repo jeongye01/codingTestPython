@@ -46,3 +46,29 @@ def solution(N, stages):
     return answer
 
 '''
+#내 풀이->테스트 통과 DATE-> 5.15 풀이시간->25분 
+'''
+def solution(N, stages): 
+    answer = []
+    stages.sort()
+    member=len(stages)
+    result=[[0,i] for i in range(N+1)] #실패 한 사람 수,스테이지 번호
+    for s in stages:
+        if s<=N:
+            result[s][0]+=1
+    for i in range(1,N+1):
+        cnt=result[i][0]
+        result[i][0]=result[i][0]/member
+        member-=cnt
+        if member==0:
+            break
+    result=result[1:]
+    result.sort(key=lambda x:-x[0])
+    for r in result:
+        answer.append(r[1])
+
+            
+    return answer
+
+
+'''
