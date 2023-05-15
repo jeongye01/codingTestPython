@@ -34,3 +34,45 @@ else:
        else:# C개 이상의 공유기를 설치할 수 없는 경우, 거리를 감소
           end=mid-1
     print(result)
+
+
+#두번째에도 설치로직에서 막힘. 이차원 배열에 모든 거리정보를 저장하려다가 메모리 초과 뜸. 200000이상에서 이차원 배열 만들지 말기
+'''
+import math,sys
+input = sys.stdin.readline #이렇게 입력하기 전에 시간초과 뜸
+n,c=map(int,input().split())
+array=[]
+for _ in range(n):
+  array.append(int(input()))
+array.sort()
+ans=0
+
+st=1
+ed=array[-1]-array[0]
+#print(distance)
+
+while st<=ed:
+  mid=(st+ed)//2
+  last=c-1
+  installed=0
+  #그냥 앞에서 부터 차근차근 mid 이상으로 설치해보면됨
+  for i in range(1,n):
+    if abs(array[installed]-array[i])>=mid:
+      last-=1
+      installed=i
+    if last<=0:
+      break
+      
+  if last>0:
+    ed=mid-1
+  else:
+    st=mid+1
+    ans=mid
+      
+  
+
+print(ans)
+
+
+
+'''
