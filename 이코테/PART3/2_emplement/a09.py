@@ -51,3 +51,32 @@ def solution(s):
     return answer
 
 '''
+
+'''
+#내풀이->테스트통과  DATE->5.18 풀이시간->30분
+def solution(s):
+    answer=len(s)
+    for c in range(1,len(s)):
+        tmp=s[0:c]
+        #print(c,tmp)
+        cnt=1
+        encoding=""
+        for i in range(c,len(s),c):
+            if tmp==s[i:i+c]:
+                cnt+=1
+            else:
+                if cnt==1:
+                    encoding+=tmp
+                else:
+                    encoding+=(str(cnt)+tmp)
+                cnt=1
+                tmp=s[i:i+c]
+        if cnt==1:
+          encoding+=tmp
+        else:
+          encoding+=(str(cnt)+tmp)
+        #print(encoding,c)
+        answer=min(answer,len(encoding))
+    return answer
+
+'''
