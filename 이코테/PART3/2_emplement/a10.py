@@ -1,3 +1,5 @@
+#자물쇠와 열쇠
+
 # 2차원 리스트 90도 회전
 def rotate_a_matrix_by_90_degree(a):
    n = len(a) # 행 길이 계산
@@ -89,5 +91,54 @@ def solution(key, lock):
             
     
     return answer
+
+'''
+
+'''
+#내풀이->테스트통과 DATE->5.18 풀이시간->45분 
+import copy
+
+
+def check(board,length):
+    for i in range(length):
+            for j in range(length):
+                if board[length+i][length+j]!=1:
+                    return False
+    return True
+
+def solution(key, lock):
+    length=len(lock)
+    new_lock=[[0]*(3*length) for _ in range(3*length)]
+    for i in range(length):
+        for j in range(length):
+            new_lock[length+i][length+j]=lock[i][j]
+    board = copy.deepcopy(new_lock)
+    for turn in range(4):
+        key=list(map(list, zip(*key)))[::-1]
+        for i in range(3*length-len(key)+1):
+            for j in range(3*length-len(key)+1):
+                for a in range(len(key)):
+                    isMatch=True
+                    for b in range(len(key)):
+                        if key[a][b]==1 and board[i+a][j+b]==0 :
+                            board[i+a][j+b]=1
+                        elif key[a][b]==1 and board[i+a][j+b]==1 :
+                            isMatch=False
+                            break
+                    if not isMatch:
+                        break
+                #print("-----------!--------")
+                #for b in board:
+                 #  print(*b)
+
+
+                if isMatch and check(board,length):
+                    return True
+                for a in range(len(key)):
+                    for b in range(len(key)):
+                            board[i+a][j+b]=new_lock[i+a][j+b]
+
+
+    return False
 
 '''
