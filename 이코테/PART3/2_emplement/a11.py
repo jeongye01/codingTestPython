@@ -1,3 +1,4 @@
+#뱀
 n = int(input())
 k = int(input())
 data = [[0] * (n + 1) for _ in range(n + 1)] # 맵 정보
@@ -125,4 +126,62 @@ while True:
     snake.popleft()
 
 print(result+1)
+'''
+
+'''
+#내풀이->테스트통과  DATE->5.18 풀이시간->70분
+from collections import deque
+n=int(input())
+k=int(input())
+board=[[0]*(n+2) for _ in range(n+2)]
+for _ in range(k):
+    r,c=map(int,input().split())
+    board[r][c]=1 # 사과 배치
+l=int(input())
+move=deque()
+for _ in range(l):
+    s,d=input().split()
+    move.append((int(s),d))
+dx=[0,-1,0,1]
+dy=[-1,0,1,0]
+direction=3
+time=0
+x,y=1,1 #머리 위치
+snake=deque([(x,y)])
+isEnd=False
+prev=0
+idx=0
+while True:
+    if move:
+        s,d=move.popleft()
+    else:
+        s=10000
+        prev=0
+    for t in range(s-prev):
+        time += 1
+        x,y=x+dx[direction],y+dy[direction] # 머리 위치 이동
+        if x<1 or x>n or y<1 or y>n or ((x,y) in snake):
+            #print("왜?",x,y,snake)
+            isEnd=True
+            break
+        snake.append((x, y))
+        if board[y][x]!=1: #사과가 없다면
+            snake.popleft()
+        else:
+            board[y][x]=0
+
+        #print("-----!-----",snake)
+
+
+    if isEnd:
+        break
+    prev=s
+    if d=="L":
+        direction=(direction+1)%4
+        #print(d,direction,(direction-1)%4)
+    elif d=="D":
+        direction=(direction-1)%4
+
+print(time)
+
 '''
