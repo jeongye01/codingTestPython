@@ -39,4 +39,18 @@ if(sum==0):
 else:
   print("READY")
 
+
+'''
+
+
+
+'''
+#내풀이 -> 테스트 통과  DATE->5.18 풀이시간->5분
+n=list(map(int,str(input())))
+if sum(n[0:len(n)//2])==sum(n[len(n)//2:]):
+    print("LUCKY")
+else:
+    print("READY")
+
+
 '''
