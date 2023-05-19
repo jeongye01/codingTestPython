@@ -1,75 +1,56 @@
 #신뢰
-#내풀이아님
-def dfs(B_idx, O_idx, time): # 파랑 위치, 오렌지 위치, 시간
- 
-    while len(Blue) != 0 or len(Orange) != 0:
-        
-        # 파란색일 때,
-        if robot_order[0] == 'B':
-            
-            # 현재 위치와 목표 값의 크기를 비교해서 이동
-            if int(robot_order[1])-1 > B_idx:
-                B_idx += 1
- 
-            elif int(robot_order[1])-1 < B_idx:
-                B_idx -= 1
- 
-            # 목표 값에 도착하면
-            # robot_order, Blue 값들 제거
-            else:
-                robot_order.pop(0)
-                robot_order.pop(0)
-                Blue.pop(0)
- 
-            # 오렌지 버튼도 눌러야 할 때,
-            if len(Orange) != 0:
-                if O_idx > Orange[0]-1:
-                    O_idx -= 1
- 
-                elif O_idx < Orange[0]-1:
-                    O_idx += 1
- 
+#내 풀이->테스트 통과 DATE=>5.19 풀이시간 120분 
+from collections import deque
+T=int(input())
+for tc in range(1,T+1):
+    arr=list(input().split())
+    n=int(arr[0]) #버튼을 누르는 경우의 수
+    b_move=deque()
+    o_move=deque()
+    order=deque()
+    for i in range(1,len(arr),2):
+        #print(arr[i])
+        if arr[i]=="B":
+            b_move.append(int(arr[i+1]))
+        if arr[i]=="O":
+            o_move.append(int(arr[i+1]))
+        order.append(arr[i])
+
+    time=0
+    b_pos=1
+    o_pos=1
+
+    while order:
+        now=order.popleft()
+        if now=="B":
+            b = b_move.popleft() # 이동시키기
+            time+=abs(b_pos-b)+1
+
+            if o_move:
+                o = o_move.popleft()
+                if o>o_pos:
+                    o_pos+=(abs(b_pos - b) + 1)
+                    o_pos=o if o<o_pos else o_pos
+                else:
+                    o_pos -= (abs(b_pos - b) + 1)
+                    o_pos = o if o > o_pos else o_pos
+
+                o_move.appendleft(o)
+
+            b_pos = b
         else:
-            if int(robot_order[1])-1 > O_idx:
-                O_idx += 1
- 
-            elif int(robot_order[1])-1 < O_idx:
-                O_idx -= 1
- 
-            else:
-                robot_order.pop(0)
-                robot_order.pop(0)
-                Orange.pop(0)
- 
-            if len(Blue) != 0:
-                if B_idx > Blue[0]-1:
-                    B_idx -= 1
- 
-                elif B_idx < Blue[0]-1:
-                    B_idx += 1
- 
-        time += 1
- 
-    return time
- 
-T = int(input())
- 
-for tc in range(1,1+T):
-    robot_order = list(map(str,input().split()))
- 
-    # n 값
-    n = int(robot_order.pop(0))
- 
-    Blue = []
-    Orange = []
- 
-    # 파란색과 오렌지 색으로 분류
-    for q in range(n):
-        if robot_order[2*q] == 'B':
-            Blue.append(int(robot_order[2*q+1]))
- 
-        else:
-            Orange.append(int(robot_order[2*q+1]))
- 
-    # 파랑 위치, 오렌지 위치, 시간
-    print('#{} {}'.format(tc,dfs(0,0,0)))
+            o = o_move.popleft()  # 이동시키기
+            time += abs(o_pos - o )+1
+
+            if b_move:
+                b = b_move.popleft()
+                if b > b_pos:
+                    b_pos += abs(o_pos - o) + 1
+                    b_pos = b if b < b_pos else b_pos
+                else:
+                    b_pos -= (abs(o_pos - o) + 1)
+                    b_pos = b if b > b_pos else b_pos
+                b_move.appendleft(b)
+            o_pos = o
+
+    print(f"#{tc} {time}")
