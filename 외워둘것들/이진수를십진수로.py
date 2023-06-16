@@ -1,0 +1,1 @@
+int(''.join(bin_number), 2)
